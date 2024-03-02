@@ -10,21 +10,21 @@ public class MsgRes {
     private Integer code;
     private String msg;
 
-    public MsgRes success(String msg){
+    public static MsgRes success(String msg){
         return MsgRes.builder()
                 .code(Code.SUCCESS)
                 .msg(msg)
                 .build();
     }
 
-    public MsgRes fail(String msg){
+    public static MsgRes fail(String msg){
         return MsgRes.builder()
                 .code(Code.FAIL)
                 .msg(msg)
                 .build();
     }
 
-    public MsgRes unauthorized(String msg){
+    public static MsgRes unauthorized(String msg){
         return MsgRes.builder()
                 .code(Code.UNAUTHORIZED)
                 .msg(msg)

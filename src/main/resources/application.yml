@@ -8,25 +8,8 @@ spring:
     url: jdbc:mysql://localhost:3306/blog?useSSL=false
     username: root
     password: 123456
-    maxActive: 100
-    initialSize: 10
-    minIdle: 10
-    maxWait: 5000
-#    # Redis数据库
-#  data:
-#    redis:
-#      database: 11
-#      host: 127.0.0.1
-#      port: 6379
-#      timeout: 5000
-#      maxclients: 100
-#      tcp-keepalive: 300
   transaction:
     default-timeout: 10
-  security:
-    user:
-      password:
-        encoder: bcrypt
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
