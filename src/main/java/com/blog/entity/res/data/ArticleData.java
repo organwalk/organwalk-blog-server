@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class HomeTypeData {
+public class ArticleData {
     private Integer id;
     private String name;
     private String outline;
