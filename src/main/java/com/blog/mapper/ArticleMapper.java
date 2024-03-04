@@ -1,6 +1,7 @@
 package com.blog.mapper;
 
 import com.blog.entity.res.data.ArticleData;
+import com.blog.entity.res.data.ArticleDetail;
 import com.blog.entity.res.data.TagsData;
 import org.apache.ibatis.annotations.*;
 
@@ -148,4 +149,7 @@ public interface ArticleMapper {
     @ResultMap("ArticleData")
     List<ArticleData> selectAllArticleByTagName(@Param("tagName") String tagName,
                                              @Param("offset") Integer offset);
+
+    @Select("select au.a_url, a.create_datetime from article_url au left join article a on au.a_id = a.id where a_id = #{aId}")
+    ArticleDetail selectArticleUrlByAId(Integer aId);
 }

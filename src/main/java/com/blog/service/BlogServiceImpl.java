@@ -1,6 +1,7 @@
 package com.blog.service;
 
 import com.blog.entity.res.data.ArticleData;
+import com.blog.entity.res.data.ArticleDetail;
 import com.blog.entity.res.data.TagsData;
 import com.blog.entity.res.univer.DataFailRespond;
 import com.blog.entity.res.univer.DataPagingSuccessRespond;
@@ -93,5 +94,13 @@ public class BlogServiceImpl implements BlogService {
         return articleDataList.isEmpty()
                 ? new DataFailRespond("已获取所有")
                 : new DataPagingSuccessRespond("ok", sum, articleDataList);
+    }
+
+    @Override
+    public DataRespond getArticleUrl(Integer aId) {
+        ArticleDetail articleDetail = articleMapper.selectArticleUrlByAId(aId);
+        return Objects.isNull(articleDetail)
+                ? new DataFailRespond("该文章不存在")
+                : new DataSuccessRespond("ok", articleDetail);
     }
 }

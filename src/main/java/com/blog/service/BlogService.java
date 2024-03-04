@@ -8,4 +8,5 @@ public interface BlogService {
     DataRespond getTypeArticleData(Integer type, Integer offset);
     DataRespond getTagsArticleCountByType(Integer type);
     DataRespond getTagArticleData(String tagName, Integer offset);
+    DataRespond getArticleUrl(Integer aId);
 }

@@ -68,40 +68,32 @@ public class BlogController {
                                           Integer type,
                                           @PathVariable
                                           @Min(value = 0, message = "path的第二个参数offset必须为正整数，包含0")
-                                          Integer offset){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+                                          Integer offset) {
         return blogService.getTypeArticleData(type, offset);
     }
 
     @GetMapping("/articles/type/tags/{type}")
     public DataRespond getTagsArticleCountByType(@PathVariable
-                                                     @Min(value = 1, message = "path的第一个参数type只能为1、2或3")
-                                                     @Max(value = 3, message = "path的第一个参数type只能为1、2或3")
-                                                     Integer type){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+                                                 @Min(value = 1, message = "path的第一个参数type只能为1、2或3")
+                                                 @Max(value = 3, message = "path的第一个参数type只能为1、2或3")
+                                                 Integer type) {
         return blogService.getTagsArticleCountByType(type);
     }
 
     @GetMapping("/articles/tag/{tagName}/{offset}")
     public DataRespond getTagArticleData(@PathVariable
-                                          @NotBlank(message = "path的第一个参数tagName不能为空")
-                                          String tagName,
-                                          @PathVariable
-                                          @Min(value = 0, message = "path的第二个参数offset必须为正整数，包含0")
-                                          Integer offset){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+                                         @NotBlank(message = "path的第一个参数tagName不能为空")
+                                         String tagName,
+                                         @PathVariable
+                                         @Min(value = 0, message = "path的第二个参数offset必须为正整数，包含0")
+                                         Integer offset) {
         return blogService.getTagArticleData(tagName, offset);
+    }
+
+    @GetMapping("/article/url/{aId}")
+    public DataRespond getArticleUrl(@PathVariable
+                                     @Min(value = 1, message = "path的第一个参数aId必须为正整数")
+                                     Integer aId) {
+        return blogService.getArticleUrl(aId);
     }
 }
