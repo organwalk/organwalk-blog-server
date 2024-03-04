@@ -3,9 +3,9 @@ package com.blog.controller;
 import com.blog.entity.res.univer.DataFailRespond;
 import com.blog.entity.res.univer.DataRespond;
 import com.blog.service.BlogService;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -52,7 +52,56 @@ public class BlogController {
         } else if (type == 3 && !Arrays.asList("1", "2", "3").contains(info)) {
             return new DataFailRespond("当type为3时，info其值必须为1、2或3");
         } else {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return blogService.getSearchData(type, keyword, info, offset);
         }
+    }
+
+    @GetMapping("/articles/type/{type}/{offset}")
+    public DataRespond getTypeArticleData(@PathVariable
+                                          @Min(value = 1, message = "path的第一个参数type只能为1、2或3")
+                                          @Max(value = 3, message = "path的第一个参数type只能为1、2或3")
+                                          Integer type,
+                                          @PathVariable
+                                          @Min(value = 0, message = "path的第二个参数offset必须为正整数，包含0")
+                                          Integer offset){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return blogService.getTypeArticleData(type, offset);
+    }
+
+    @GetMapping("/articles/type/tags/{type}")
+    public DataRespond getTagsArticleCountByType(@PathVariable
+                                                     @Min(value = 1, message = "path的第一个参数type只能为1、2或3")
+                                                     @Max(value = 3, message = "path的第一个参数type只能为1、2或3")
+                                                     Integer type){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return blogService.getTagsArticleCountByType(type);
+    }
+
+    @GetMapping("/articles/tag/{tagName}/{offset}")
+    public DataRespond getTagArticleData(@PathVariable
+                                          @NotBlank(message = "path的第一个参数tagName不能为空")
+                                          String tagName,
+                                          @PathVariable
+                                          @Min(value = 0, message = "path的第二个参数offset必须为正整数，包含0")
+                                          Integer offset){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return blogService.getTagArticleData(tagName, offset);
     }
 }
